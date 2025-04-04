@@ -1,3 +1,5 @@
+
+
 <code>SELECT * FROM INHABITANT;</code>
 <br>
 <code>SELECT * FROM INHABITANT WHERE state = 'friendly';</code>
@@ -28,10 +30,34 @@ or<br>
 or<br>
 <code>UPDATE ITEM SET owner = 15 WHERE item = 'ring' OR item = 'teapot';</code>
 <br>
-<code>UPDATE INHABITANT SET name = 'SOMANSHU' WHERE name = 'Stranger';</code<br>
+<code>UPDATE INHABITANT SET name = 'SOMANSHU' WHERE name = 'Stranger';</code><br>
 or<br>
 <code>UPDATE INHABITANT SET name = 'SOMANSHU' WHERE personid = 20</code>
 <br>
+<code>SELECT * FROM INHABITANT WHERE job = 'baker' ORDER BY gold DESC;</code>
+<br>
+<code>SELECT * FROM INHABITANT WHERE job = 'pilot';</code>
+<br>
+<code>SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON i.personid = v.chief WHERE v.name = 'Onionville';</code>
+<br>
+<code>SELECT COUNT(*) FROM INHABITANT i INNER JOIN VILLAGE v ON i.villageid = v.villageid WHERE v.name = 'Onionville' AND i.gender = 'f';</code>
+<br>
+<code>SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON i.villageid = v.villageid WHERE v.name = 'Onionville' AND i.gender = 'f';</code>
+<br>
+<code>SELECT SUM(gold) FROM INHABITANT WHERE job IN ('baker', 'dealer', 'merchant'); </code>
+<br>
+<code>SELECT state, AVG(gold) FROM INHABITANT GROUP BY state;</code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
 <code></code>
 <br>
 <code></code>
@@ -44,5 +70,30 @@ or<br>
 <br>
 <code></code>
 <br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+<code></code>
+<br>
+
 <code></code>
 <br>
