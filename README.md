@@ -28,7 +28,9 @@ or<br>
 or<br>
 <code>UPDATE ITEM SET owner = 15 WHERE item = 'ring' OR item = 'teapot';</code>
 <br>
-<code></code>
+<code>UPDATE INHABITANT SET name = 'SOMANSHU' WHERE name = 'Stranger';</code<br>
+or<br>
+<code>UPDATE INHABITANT SET name = 'SOMANSHU' WHERE personid = 20</code>
 <br>
 <code></code>
 <br>
