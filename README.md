@@ -1,4 +1,14 @@
+This repository contains my step-by-step solutions for the [SQL Island](https://www.sql-island.com/) interactive SQL learning game.
 
+This repository includes:
+- 🧠 Conversation prompts from the game
+- ❓ The questions/challenges
+- 🧾 My solutions (SQL queries)
+
+Schema:
+- VILLAGE (villageid, name, chief)
+- INHABITANT (personid, name, villageid, gender, job, gold, state)
+- ITEM (item, owner)
 
 <code>SELECT * FROM INHABITANT;</code>
 <br>
