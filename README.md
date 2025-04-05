@@ -81,7 +81,23 @@ SELECT * FROM INHABITANT;
 </table>
 
 #### You: Woah, so many people!
-<code>SELECT * FROM INHABITANT;</code>
+#### You: Man! I'm hungry. I will go and find a butcher to ask for some free sausages.
+> SELECT * FROM inhabitant WHERE job = 'butcher'<br>
+> Output:
+<table>
+  <thead>
+    <tr>
+      <th>personid</th><th>name</th><th>villageid</th><th>gender</th><th>job</th><th>gold</th><th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>6</td><td>Gerry Slaughterer</td><td>2</td><td>m</td><td>butcher</td><td>4850</td><td>evil</td></tr>
+    <tr><td>7</td><td>Peter Slaughterer</td><td>3</td><td>m</td><td>butcher</td><td>3250</td><td>evil</td></tr>
+    <tr><td>17</td><td>Edward Grasshead</td><td>3</td><td>m</td><td>butcher</td><td>990</td><td>friendly</td></tr>
+    <tr><td>19</td><td>Ann Meaty</td><td>2</td><td>f</td><td>butcher</td><td>2280</td><td>friendly</td></tr>
+  </tbody>
+</table>
+
 <br>
 <code>SELECT * FROM INHABITANT WHERE state = 'friendly';</code>
 <br>
