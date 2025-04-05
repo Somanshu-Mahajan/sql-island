@@ -447,7 +447,19 @@ SELECT state, AVG(gold) FROM INHABITANT GROUP BY state;
 
 #### Dirty Diane: Heeeey! Now I'm very angry! What will you do next, Somanshu?
 ```sql
+DELETE FROM INHABITANT WHERE name = 'Dirty Diane';
+```
 
+#### You: Yeah! Now I release the pilot!
+```sql
+UPDATE INHABITANT SET state = 'friendly' WHERE state = 'kidnapped';
+```
+
+#### Pilot: Thank's for releasing me, Somanshu! I will fly you home!
+#### You: I take my sword, some gold and lots of useless items with me as a souvenir. What a big adventure!
+> UPDATE inhabitant SET state = 'emigrated' WHERE personid = 20
+
+### The game is over. Get your certificate of completion now! If you want to change the name on the certificate, use an UPDATE command on the inhabitants table.
 
 
 
