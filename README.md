@@ -98,99 +98,100 @@ SELECT * FROM INHABITANT;
   </tbody>
 </table>
 
-<br>
-<code>SELECT * FROM INHABITANT WHERE state = 'friendly';</code>
-<br>
-<code>SELECT * FROM INHABITANT WHERE state = 'friendly' and job = 'weaponsmith';</code>
-<br>
-<code>SELECT * FROM INHABITANT WHERE state = 'friendly' and job LIKE '%smith';</code>
-<br>
-<code>SELECT personid FROM INHABITANT WHERE name = 'Stranger';</code>
-<br>
-<code>SELECT gold FROM INHABITANT WHERE name = 'Stranger';</code>
-<br>
-<code>SELECT * FROM ITEM WHERE owner IS NULL;</code>
-<br>
-<code>UPDATE ITEM SET owner = (SELECT personid FROM INHABITANT WHERE name = 'Stranger') WHERE owner IS NULL;</code><br>
- or<br>
-<code>UPDATE ITEM SET owner = 20 WHERE owner IS NULL;</code>
-<br>
-<code>SELECT * FROM ITEM WHERE owner = (SELECT personid FROM INHABITANT WHERE name = 'Stranger');</code><br>
-or<br>
-<code>SELECT * FROM ITEM WHERE owner = 20;</code>
-<br>
-<code>SELECT * FROM INHABITANT WHERE state = 'friendly' AND job IN ('dealer', 'merchant');</code><br>
-or<br>
-<code>SELECT * FROM INHABITANT WHERE state = 'friendly' AND job = 'dealer' OR job = 'merchant';</code>
-<br>
-<code>UPDATE ITEM SET owner = 15 WHERE item IN ('ring', 'teapot');</code><br>
-or<br>
-<code>UPDATE ITEM SET owner = 15 WHERE item = 'ring' OR item = 'teapot';</code>
-<br>
-<code>UPDATE INHABITANT SET name = 'SOMANSHU' WHERE name = 'Stranger';</code><br>
-or<br>
-<code>UPDATE INHABITANT SET name = 'SOMANSHU' WHERE personid = 20</code>
-<br>
-<code>SELECT * FROM INHABITANT WHERE job = 'baker' ORDER BY gold DESC;</code>
-<br>
-<code>SELECT * FROM INHABITANT WHERE job = 'pilot';</code>
-<br>
-<code>SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON i.personid = v.chief WHERE v.name = 'Onionville';</code>
-<br>
-<code>SELECT COUNT(*) FROM INHABITANT i INNER JOIN VILLAGE v ON i.villageid = v.villageid WHERE v.name = 'Onionville' AND i.gender = 'f';</code>
-<br>
-<code>SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON i.villageid = v.villageid WHERE v.name = 'Onionville' AND i.gender = 'f';</code>
-<br>
-<code>SELECT SUM(gold) FROM INHABITANT WHERE job IN ('baker', 'dealer', 'merchant'); </code>
-<br>
-<code>SELECT state, AVG(gold) FROM INHABITANT GROUP BY state;</code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
-<code></code>
-<br>
+#### Edward Grasshead(Butcher): There you are! Enjoy your meal! But take care of yourself. As long as you are unarmed, stay away from villains. Not everyone on this island is friendly.
+#### You: Thank you, Edward! Okay, let's see who is friendly on this island...
 
-<code></code>
-<br>
+```sql
+SELECT * FROM INHABITANT WHERE state = 'friendly';
+```
+> Output:
+<table>
+  <thead>
+    <tr>
+      <th>personid</th><th>name</th><th>villageid</th><th>gender</th><th>job</th><th>gold</th><th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Paul Bakerman</td><td>1</td><td>m</td><td>baker</td><td>850</td><td>friendly</td></tr>
+    <tr><td>2</td><td>Ernest Perry</td><td>3</td><td>m</td><td>weaponsmith</td><td>280</td><td>friendly</td></tr>
+    <tr><td>3</td><td>Rita Ox</td><td>1</td><td>f</td><td>baker</td><td>350</td><td>friendly</td></tr>
+    <tr><td>4</td><td>Carl Ox</td><td>1</td><td>m</td><td>merchant</td><td>250</td><td>friendly</td></tr>
+    <tr><td>10</td><td>Peter Drummer</td><td>1</td><td>m</td><td>smith</td><td>600</td><td>friendly</td></tr>
+    <tr><td>12</td><td>Otto Alexander</td><td>2</td><td>m</td><td>dealer</td><td>680</td><td>friendly</td></tr>
+    <tr><td>13</td><td>Fred Dix</td><td>3</td><td>m</td><td>author</td><td>420</td><td>friendly</td></tr>
+    <tr><td>15</td><td>Helen Grasshead</td><td>2</td><td>f</td><td>dealer</td><td>680</td><td>friendly</td></tr>
+    <tr><td>17</td><td>Edward Grasshead</td><td>3</td><td>m</td><td>butcher</td><td>990</td><td>friendly</td></tr>
+    <tr><td>18</td><td>Ryan Horse</td><td>3</td><td>m</td><td>blacksmith</td><td>390</td><td>friendly</td></tr>
+    <tr><td>19</td><td>Ann Meaty</td><td>2</td><td>f</td><td>butcher</td><td>2280</td><td>friendly</td></tr>
+  </tbody>
+</table>
+
+#### You: There is no way around getting a sword for myself. I will now try to find a friendly weaponsmith to forge me one. (Hint: You can combine predicates in the WHERE clause with AND)
+```sql
+SELECT * FROM INHABITANT WHERE job = 'weaponsmith' AND state = 'friendly';
+```
+> Output:
+<table>
+  <thead>
+    <tr>
+      <th>personid</th><th>name</th><th>villageid</th><th>gender</th><th>job</th><th>gold</th><th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>2</td><td>Ernest Perry</td><td>3</td><td>m</td><td>weaponsmith</td><td>280</td><td>friendly</td></tr>
+  </tbody>
+</table>
+
+#### You: Oh, that does not look good. Maybe other friendly smiths can help you out, e.g. a blacksmith. Try out: job LIKE '%smith' to find all inhabitants whose job ends with 'smith' (% is a wildcard for any number of characters).
+```sql
+SELECT * FROM INHABITANT WHERE job LIKE '%smith' AND state = 'friendly';
+```
+> Output:
+<table>
+  <thead>
+    <tr>
+      <th>personid</th><th>name</th><th>villageid</th><th>gender</th><th>job</th><th>gold</th><th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>2</td><td>Ernest Perry</td><td>3</td><td>m</td><td>weaponsmith</td><td>280</td><td>friendly</td></tr>
+    <tr><td>10</td><td>Peter Drummer</td><td>1</td><td>m</td><td>smith</td><td>600</td><td>friendly</td></tr>
+    <tr><td>18</td><td>Ryan Horse</td><td>3</td><td>m</td><td>blacksmith</td><td>390</td><td>friendly</td></tr>
+  </tbody>
+</table>
+
+#### You: That looks better! I will go and visit those smiths.
+#### Paul: Hi stranger! Where are you going? I'm Paul, I'm the major of Monkeycity. I will go ahead and register you as a citizen.
+> INSERT INTO inhabitant (name, villageid, gender, job, gold, state) VALUES ('Stranger', 1, '?', '?', 0, '?')
+#### You: No need to call me stranger! What's my personid? (Hint: Use a SELECT query without an asterisk. In former queries, the * stands for: all columns. Instead of the star, you can also address one or more columns (seperated by a comma) and you will only get the columns you need.)
+```sql
+SELECT personid FROM INHABITANT WHERE name = 'Stranger';
+```
+> Output:
+<table>
+  <thead>
+    <tr>
+      <th>personid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>20</td></tr>
+  </tbody>
+</table>
+
+#### You: Hi Ernest! How much is a sword?
+#### Ernest: I can offer to make you a sword for 150 gold. That's the cheapest you will find! How much gold do you have?
+```sql
+SELECT gold FROM INHABITANT WHERE personid = 20;
+```
+> Output:
+<table>
+  <thead>
+    <tr>
+      <th>gold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td></tr>
+  </tbody>
+</table>
