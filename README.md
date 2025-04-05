@@ -260,6 +260,70 @@ SELECT * FROM INHABITANT WHERE job IN ('dealer', 'merchant') AND state = 'friend
 ```sql
 UPDATE ITEM SET owner = 15 WHERE item IN ('ring', 'teapot');
 ```
+#### Helen Grasshead(dealer): Thank you!
+#### Helen Grasshead(dealer): Here, some gold!
+> UPDATE inhabitant SET gold = gold + 120 WHERE personid = 20
+
+#### You: Unfortunately, that's not enough gold to buy a sword. Seems like I do have to work after all. Maybe it's not a bad idea to change my name from Stranger to my real name before I will apply for a job.
+```sql
+UPDATE INHABITANT SET name = 'Somanshu' WHERE personid = 20;
+```
+#### You: Since baking is one of my hobbies, why not find a baker who I can work for? (Hint: List all bakers and use 'ORDER BY gold' to sort the results. 'ORDER BY gold DESC' is even better because then the richest baker is on top.)
+```sql
+SELECT * FROM INHABITANT WHERE job = 'baker' ORDER BY gold DESC;
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>personid</th><th>name</th><th>villageid</th><th>gender</th><th>job</th><th>gold</th><th>state</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Paul Bakerman</td><td>1</td><td>m</td><td>baker</td><td>850</td><td>friendly</td></tr>
+    <tr><td>9</td><td>Tiffany Drummer</td><td>1</td><td>f</td><td>baker</td><td>550</td><td>evil</td></tr>
+    <tr><td>3</td><td>Rita Ox</td><td>1</td><td>f</td><td>baker</td><td>350</td><td>friendly</td></tr>
+  </tbody>
+</table>
+
+#### You: Aha, Paul! I know him!
+#### Paul: Hi, you again! So, Somanshu is your name. I saw you want to work as a baker? Okay! You will be paid 1 gold for 100 bread rolls.
+#### You: (8 hours later...) Here, I made ten thousand bread rolls! I quit! This should be enough money to buy a sword. Let's see what happens with my gold balance.
+> UPDATE inhabitant SET gold = gold + 100 - 150 WHERE personid = 20
+#### Edward: Here's your new sword, Somonsho! Now you can go everywhere.
+> INSERT INTO item (item, owner) VALUES ('sword', 20)
+#### You: My name is Somanshu! Thanks anyway!
+#### You: Is there a pilot on this island by any chance? He could fly me home.
+```sql
+SELECT * FROM INHABITANT WHERE job = 'pilot';
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>personid</th><th>name</th><th>villageid</th><th>gender</th><th>job</th><th>gold</th><th>state</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>8</td><td>Arthur Tailor</td><td>2</td><td>m</td><td>pilot</td><td>490</td><td>kidnapped</td></tr>
+  </tbody>
+</table>
+
+#### You: Oh no, his state is 'kidnapped'.
+#### Edward: Horrible, the pilot is held captive by Dirty Dieter! I will show you a trick how to find out the name of the village where Dirty Dieter lives.
+> SELECT village.name FROM village, inhabitant WHERE village.villageid = inhabitant.villageid AND inhabitant.name = 'Dirty Dieter'
+> Output: 
+<table>
+  <thead>
+    <tr><th>name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Onionville</td></tr>
+  </tbody>
+</table>
+
+#### Edward: The expression presented here is called a join. It combines the information of the inhabitant table with information of the village table by matching villageid values.
+#### You: Thanks for the hint! I can use the join to find out the chief's name of the village Onionville. (Hint: In the column 'chief' in the village table, the personid of the chief is stored).
+
+
+
+
 
 
 
