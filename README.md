@@ -462,7 +462,9 @@ UPDATE INHABITANT SET state = 'friendly' WHERE state = 'kidnapped';
 #### 💬You: I take my sword, some gold and lots of useless items with me as a souvenir. What a big adventure!
 > UPDATE inhabitant SET state = 'emigrated' WHERE personid = 20
 
-### The game is over. Get your certificate of completion now! If you want to change the name on the certificate, use an UPDATE command on the inhabitants table.
+### The game is over. Get your certificate of completion now! If you want to change the name on the certificate, use an UPDATE command on the inhabitants table.<br>
+
+### Enjoyed this repo? A ⭐ lets me know it was worth sharing!
 
 
 
