@@ -195,3 +195,67 @@ SELECT gold FROM INHABITANT WHERE personid = 20;
     <tr><td>0</td></tr>
   </tbody>
 </table>
+
+#### You: Damn! No mon, no fun. There has to be another option to earn gold other than going to work. Maybe I could collect ownerless items and sell them! Can I make a list of all items that don't belong to anyone? (Hint: You can recognize ownerless items by: WHERE owner IS NULL)
+```sql
+SELECT * FROM ITEM WHERE owner IS NULL;
+```
+<table>
+  <thead>
+    <tr><th>item</th><th>owner</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>teapot</td><td>null</td></tr>
+    <tr><td>ring</td><td>null</td></tr>
+    <tr><td>coffee cup</td><td>null</td></tr>
+    <tr><td>bucket</td><td>null</td></tr>
+    <tr><td>carton</td><td>null</td></tr>
+    <tr><td>lightbulb</td><td>null</td></tr>
+  </tbody>
+</table>
+
+#### You: So much cool stuff!
+#### You: Yay, a coffee cup. Let's collect it!
+> UPDATE item SET owner = 20 WHERE item = 'coffee cup'
+#### You: Do you know a trick how to collect all the ownerless items?
+```sql
+UPDATE ITEM SET owner = 20 WHERE owner IS NULL;
+```
+#### You: Now list all of the items I have!
+```sql
+SELECT * FROM ITEM WHERE owner = 20;
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>item</th><th>owner</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>teapot</td><td>20</td></tr>
+    <tr><td>ring</td><td>20</td></tr>
+    <tr><td>coffee cup</td><td>20</td></tr>
+    <tr><td>bucket</td><td>20</td></tr>
+    <tr><td>carton</td><td>20</td></tr>
+    <tr><td>lightbulb</td><td>20</td></tr>
+  </tbody>
+</table>
+
+#### You: Find a friendly inhabitant who is either a dealer or a merchant. Maybe they want to buy some of my items. (Hint: When you use both AND and OR, don't forget to put brackets correctly!)
+```sql
+SELECT * FROM INHABITANT WHERE job IN ('dealer', 'merchant') AND state = 'friendly';
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>personid</th><th>name</th><th>villageid</th><th>gender</th><th>job</th><th>gold</th><th>state</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>4</td><td>Carl Ox</td><td>1</td><td>m</td><td>merchant</td><td>250</td><td>friendly</td></tr>
+    <tr><td>12</td><td>Otto Alexander</td><td>2</td><td>m</td><td>dealer</td><td>680</td><td>friendly</td></tr>
+    <tr><td>15</td><td>Helen Grasshead</td><td>2</td><td>f</td><td>dealer</td><td>680</td><td>friendly</td></tr>
+  </tbody>
+</table>
+
+
+
+
