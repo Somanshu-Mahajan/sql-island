@@ -1,9 +1,12 @@
 This repository contains my step-by-step solutions for the [SQL Island](https://www.sql-island.com/) interactive SQL learning game.<br>
-NDchkaQLUr<br>
-This repository includes:
-- 🧠 Conversation prompts from the game
-- ❓ The questions/challenges
-- 🧾 My solutions (SQL queries)
+
+How to read this document:
+- > The queries in this format are game system auto-generated and executed by the game.
+- Output for each query is provided.
+- Conversations are also included for easy navigation of that story point.
+- ```sql
+  My solutions are in this format and can be directly copied to clipboard.
+  ```
 
 Schema:
 - VILLAGE (villageid, name, chief)
@@ -80,8 +83,8 @@ SELECT * FROM INHABITANT;
   </tbody>
 </table>
 
-#### You: Woah, so many people!
-#### You: Man! I'm hungry. I will go and find a butcher to ask for some free sausages.
+#### 💬You: Woah, so many people!
+#### 💬You: Man! I'm hungry. I will go and find a butcher to ask for some free sausages.
 > SELECT * FROM inhabitant WHERE job = 'butcher'<br>
 > Output:
 <table>
@@ -98,8 +101,8 @@ SELECT * FROM INHABITANT;
   </tbody>
 </table>
 
-#### Edward Grasshead(Butcher): There you are! Enjoy your meal! But take care of yourself. As long as you are unarmed, stay away from villains. Not everyone on this island is friendly.
-#### You: Thank you, Edward! Okay, let's see who is friendly on this island...
+#### 💬Edward Grasshead(Butcher): There you are! Enjoy your meal! But take care of yourself. As long as you are unarmed, stay away from villains. Not everyone on this island is friendly.
+#### 💬You: Thank you, Edward! Okay, let's see who is friendly on this island...
 
 ```sql
 SELECT * FROM INHABITANT WHERE state = 'friendly';
@@ -126,7 +129,7 @@ SELECT * FROM INHABITANT WHERE state = 'friendly';
   </tbody>
 </table>
 
-#### You: There is no way around getting a sword for myself. I will now try to find a friendly weaponsmith to forge me one. (Hint: You can combine predicates in the WHERE clause with AND)
+#### 💬You: There is no way around getting a sword for myself. I will now try to find a friendly weaponsmith to forge me one. (Hint: You can combine predicates in the WHERE clause with AND)
 ```sql
 SELECT * FROM INHABITANT WHERE job = 'weaponsmith' AND state = 'friendly';
 ```
@@ -142,7 +145,7 @@ SELECT * FROM INHABITANT WHERE job = 'weaponsmith' AND state = 'friendly';
   </tbody>
 </table>
 
-#### You: Oh, that does not look good. Maybe other friendly smiths can help you out, e.g. a blacksmith. Try out: job LIKE '%smith' to find all inhabitants whose job ends with 'smith' (% is a wildcard for any number of characters).
+#### 💬You: Oh, that does not look good. Maybe other friendly smiths can help you out, e.g. a blacksmith. Try out: job LIKE '%smith' to find all inhabitants whose job ends with 'smith' (% is a wildcard for any number of characters).
 ```sql
 SELECT * FROM INHABITANT WHERE job LIKE '%smith' AND state = 'friendly';
 ```
@@ -160,10 +163,10 @@ SELECT * FROM INHABITANT WHERE job LIKE '%smith' AND state = 'friendly';
   </tbody>
 </table>
 
-#### You: That looks better! I will go and visit those smiths.
-#### Paul: Hi stranger! Where are you going? I'm Paul, I'm the major of Monkeycity. I will go ahead and register you as a citizen.
+#### 💬You: That looks better! I will go and visit those smiths.
+#### 💬Paul: Hi stranger! Where are you going? I'm Paul, I'm the major of Monkeycity. I will go ahead and register you as a citizen.
 > INSERT INTO inhabitant (name, villageid, gender, job, gold, state) VALUES ('Stranger', 1, '?', '?', 0, '?')
-#### You: No need to call me stranger! What's my personid? (Hint: Use a SELECT query without an asterisk. In former queries, the * stands for: all columns. Instead of the star, you can also address one or more columns (seperated by a comma) and you will only get the columns you need.)
+#### 💬You: No need to call me stranger! What's my personid? (Hint: Use a SELECT query without an asterisk. In former queries, the * stands for: all columns. Instead of the star, you can also address one or more columns (seperated by a comma) and you will only get the columns you need.)
 ```sql
 SELECT personid FROM INHABITANT WHERE name = 'Stranger';
 ```
@@ -179,8 +182,8 @@ SELECT personid FROM INHABITANT WHERE name = 'Stranger';
   </tbody>
 </table>
 
-#### You: Hi Ernest! How much is a sword?
-#### Ernest: I can offer to make you a sword for 150 gold. That's the cheapest you will find! How much gold do you have?
+#### 💬You: Hi Ernest! How much is a sword?
+#### 💬Ernest: I can offer to make you a sword for 150 gold. That's the cheapest you will find! How much gold do you have?
 ```sql
 SELECT gold FROM INHABITANT WHERE personid = 20;
 ```
@@ -196,7 +199,7 @@ SELECT gold FROM INHABITANT WHERE personid = 20;
   </tbody>
 </table>
 
-#### You: Damn! No mon, no fun. There has to be another option to earn gold other than going to work. Maybe I could collect ownerless items and sell them! Can I make a list of all items that don't belong to anyone? (Hint: You can recognize ownerless items by: WHERE owner IS NULL)
+#### 💬You: Damn! No mon, no fun. There has to be another option to earn gold other than going to work. Maybe I could collect ownerless items and sell them! Can I make a list of all items that don't belong to anyone? (Hint: You can recognize ownerless items by: WHERE owner IS NULL)
 ```sql
 SELECT * FROM ITEM WHERE owner IS NULL;
 ```
@@ -214,14 +217,14 @@ SELECT * FROM ITEM WHERE owner IS NULL;
   </tbody>
 </table>
 
-#### You: So much cool stuff!
-#### You: Yay, a coffee cup. Let's collect it!
+#### 💬You: So much cool stuff!
+#### 💬You: Yay, a coffee cup. Let's collect it!
 > UPDATE item SET owner = 20 WHERE item = 'coffee cup'
-#### You: Do you know a trick how to collect all the ownerless items?
+#### 💬You: Do you know a trick how to collect all the ownerless items?
 ```sql
 UPDATE ITEM SET owner = 20 WHERE owner IS NULL;
 ```
-#### You: Now list all of the items I have!
+#### 💬You: Now list all of the items I have!
 ```sql
 SELECT * FROM ITEM WHERE owner = 20;
 ```
@@ -240,7 +243,7 @@ SELECT * FROM ITEM WHERE owner = 20;
   </tbody>
 </table>
 
-#### You: Find a friendly inhabitant who is either a dealer or a merchant. Maybe they want to buy some of my items. (Hint: When you use both AND and OR, don't forget to put brackets correctly!)
+#### 💬You: Find a friendly inhabitant who is either a dealer or a merchant. Maybe they want to buy some of my items. (Hint: When you use both AND and OR, don't forget to put brackets correctly!)
 ```sql
 SELECT * FROM INHABITANT WHERE job IN ('dealer', 'merchant') AND state = 'friendly';
 ```
@@ -256,19 +259,19 @@ SELECT * FROM INHABITANT WHERE job IN ('dealer', 'merchant') AND state = 'friend
   </tbody>
 </table>
 
-#### Helen Grasshead(dealer): I'd like to get the ring and the teapot. The rest is nothing but scrap. Please give me the two items. My personid is 15.
+#### 💬Helen Grasshead(dealer): I'd like to get the ring and the teapot. The rest is nothing but scrap. Please give me the two items. My personid is 15.
 ```sql
 UPDATE ITEM SET owner = 15 WHERE item IN ('ring', 'teapot');
 ```
-#### Helen Grasshead(dealer): Thank you!
-#### Helen Grasshead(dealer): Here, some gold!
+#### 💬Helen Grasshead(dealer): Thank you!
+#### 💬Helen Grasshead(dealer): Here, some gold!
 > UPDATE inhabitant SET gold = gold + 120 WHERE personid = 20
 
-#### You: Unfortunately, that's not enough gold to buy a sword. Seems like I do have to work after all. Maybe it's not a bad idea to change my name from Stranger to my real name before I will apply for a job.
+#### 💬You: Unfortunately, that's not enough gold to buy a sword. Seems like I do have to work after all. Maybe it's not a bad idea to change my name from Stranger to my real name before I will apply for a job.
 ```sql
 UPDATE INHABITANT SET name = 'Somanshu' WHERE personid = 20;
 ```
-#### You: Since baking is one of my hobbies, why not find a baker who I can work for? (Hint: List all bakers and use 'ORDER BY gold' to sort the results. 'ORDER BY gold DESC' is even better because then the richest baker is on top.)
+#### 💬You: Since baking is one of my hobbies, why not find a baker who I can work for? (Hint: List all bakers and use 'ORDER BY gold' to sort the results. 'ORDER BY gold DESC' is even better because then the richest baker is on top.)
 ```sql
 SELECT * FROM INHABITANT WHERE job = 'baker' ORDER BY gold DESC;
 ```
@@ -284,14 +287,14 @@ SELECT * FROM INHABITANT WHERE job = 'baker' ORDER BY gold DESC;
   </tbody>
 </table>
 
-#### You: Aha, Paul! I know him!
-#### Paul: Hi, you again! So, Somanshu is your name. I saw you want to work as a baker? Okay! You will be paid 1 gold for 100 bread rolls.
-#### You: (8 hours later...) Here, I made ten thousand bread rolls! I quit! This should be enough money to buy a sword. Let's see what happens with my gold balance.
+#### 💬You: Aha, Paul! I know him!
+#### 💬Paul: Hi, you again! So, Somanshu is your name. I saw you want to work as a baker? Okay! You will be paid 1 gold for 100 bread rolls.
+#### 💬You: (8 hours later...) Here, I made ten thousand bread rolls! I quit! This should be enough money to buy a sword. Let's see what happens with my gold balance.
 > UPDATE inhabitant SET gold = gold + 100 - 150 WHERE personid = 20
-#### Edward: Here's your new sword, Somonsho! Now you can go everywhere.
+#### 💬Edward: Here's your new sword, Somonsho! Now you can go everywhere.
 > INSERT INTO item (item, owner) VALUES ('sword', 20)
-#### You: My name is Somanshu! Thanks anyway!
-#### You: Is there a pilot on this island by any chance? He could fly me home.
+#### 💬You: My name is Somanshu! Thanks anyway!
+#### 💬You: Is there a pilot on this island by any chance? He could fly me home.
 ```sql
 SELECT * FROM INHABITANT WHERE job = 'pilot';
 ```
@@ -305,8 +308,8 @@ SELECT * FROM INHABITANT WHERE job = 'pilot';
   </tbody>
 </table>
 
-#### You: Oh no, his state is 'kidnapped'.
-#### Edward: Horrible, the pilot is held captive by Dirty Dieter! I will show you a trick how to find out the name of the village where Dirty Dieter lives.
+#### 💬You: Oh no, his state is 'kidnapped'.
+#### 💬Edward: Horrible, the pilot is held captive by Dirty Dieter! I will show you a trick how to find out the name of the village where Dirty Dieter lives.
 > SELECT village.name FROM village, inhabitant WHERE village.villageid = inhabitant.villageid AND inhabitant.name = 'Dirty Dieter'
 > Output: 
 <table>
@@ -318,8 +321,8 @@ SELECT * FROM INHABITANT WHERE job = 'pilot';
   </tbody>
 </table>
 
-#### Edward: The expression presented here is called a join. It combines the information of the inhabitant table with information of the village table by matching villageid values.
-#### You: Thanks for the hint! I can use the join to find out the chief's name of the village Onionville. (Hint: In the column 'chief' in the village table, the personid of the chief is stored).
+#### 💬Edward: The expression presented here is called a join. It combines the information of the inhabitant table with information of the village table by matching villageid values.
+#### 💬You: Thanks for the hint! I can use the join to find out the chief's name of the village Onionville. (Hint: In the column 'chief' in the village table, the personid of the chief is stored).
 ```sql
 SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.chief = i.personid WHERE v.name = 'Onionville';
 ```
@@ -333,8 +336,8 @@ SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.chief = i.personid WHE
   </tbody>
 </table>
 
-#### You: I've got it! I will visit Fred and ask him about Dirty Dieter and the pilot.
-#### You: Um, how many inhabitants does Onionville have?
+#### 💬You: I've got it! I will visit Fred and ask him about Dirty Dieter and the pilot.
+#### 💬You: Um, how many inhabitants does Onionville have?
 > SELECT COUNT(*) FROM inhabitant, village WHERE village.villageid = inhabitant.villageid AND village.name = 'Onionville'
 > Output:
 <table>
@@ -346,7 +349,7 @@ SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.chief = i.personid WHE
   </tbody>
 </table>
 
-#### Fred Dix(Chief of Onionville): Hello Somanshu, the pilot is held captive by Dirty Dieter in his sister's house. Shall I tell you how many women there are in Onionville? Nah, you can figure it out by yourself! (Hint: Women show up as gender = 'f')
+#### 💬Fred Dix(Chief of Onionville): Hello Somanshu, the pilot is held captive by Dirty Dieter in his sister's house. Shall I tell you how many women there are in Onionville? Nah, you can figure it out by yourself! (Hint: Women show up as gender = 'f')
 ```sql
 SELECT COUNT(*) FROM INHABITANT i INNER JOIN VILLAGE v ON v.villageid = i.villageid WHERE v.name = 'Onionville' AND gender = 'f';
 ```
@@ -360,7 +363,7 @@ SELECT COUNT(*) FROM INHABITANT i INNER JOIN VILLAGE v ON v.villageid = i.villag
   </tbody>
 </table>
 
-#### You: Oh, only one woman. What's her name?
+#### 💬You: Oh, only one woman. What's her name?
 ```sql
 SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.villageid = i.villageid WHERE v.name = 'Onionville' AND gender = 'f';
 ```
@@ -374,8 +377,8 @@ SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.villageid = i.villagei
   </tbody>
 </table>
 
-#### You: Let's go!
-#### Dirty Dieter: Somanshu, if you hand me over the entire property of our nearby village Cucumbertown, I will release the pilot. I will show you now what this property consists of.
+#### 💬You: Let's go!
+#### 💬Dirty Dieter: Somanshu, if you hand me over the entire property of our nearby village Cucumbertown, I will release the pilot. I will show you now what this property consists of.
 > SELECT SUM(inhabitant.gold) FROM inhabitant, village WHERE village.villageid = inhabitant.villageid AND village.name = 'Cucumbertown'
 > Output:
 <table>
@@ -387,7 +390,7 @@ SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.villageid = i.villagei
   </tbody>
 </table>
 
-#### You: Oh no, baking bread alone can't solve my problems. If I continue working and selling items though, I could earn more gold than the worth of gold inventories of all bakers, dealers and merchants together. How much gold is that?
+#### 💬You: Oh no, baking bread alone can't solve my problems. If I continue working and selling items though, I could earn more gold than the worth of gold inventories of all bakers, dealers and merchants together. How much gold is that?
 ```sql
 SELECT SUM(gold) FROM INHABITANT WHERE job IN ('baker', 'dealer' ,'merchant');
 ```
@@ -401,8 +404,8 @@ SELECT SUM(gold) FROM INHABITANT WHERE job IN ('baker', 'dealer' ,'merchant');
   </tbody>
 </table>
 
-#### You: That's not enough.
-#### You: Let's have a look at how much average gold people own, depending on their job.
+#### 💬You: That's not enough.
+#### 💬You: Let's have a look at how much average gold people own, depending on their job.
 > SELECT job, SUM(inhabitant.gold), AVG(inhabitant.gold) FROM inhabitant GROUP BY job ORDER BY AVG(inhabitant.gold)
 > Output:
 <table>
@@ -424,7 +427,7 @@ SELECT SUM(gold) FROM INHABITANT WHERE job IN ('baker', 'dealer' ,'merchant');
   </tbody>
 </table>
 
-#### You: Very interesting: For some reason, butchers own the most gold. How much gold do different inhabitants have on average, depending on their state (friendly, ...)?
+#### 💬You: Very interesting: For some reason, butchers own the most gold. How much gold do different inhabitants have on average, depending on their state (friendly, ...)?
 ```sql
 SELECT state, AVG(gold) FROM INHABITANT GROUP BY state;
 ```
@@ -441,22 +444,22 @@ SELECT state, AVG(gold) FROM INHABITANT GROUP BY state;
   </tbody>
 </table>
 
-#### You: Ok, so the only way is to mug the villains.
-#### You: Or I might as well go ahead and just kill Dirty Dieter with my sword!
+#### 💬You: Ok, so the only way is to mug the villains.
+#### 💬You: Or I might as well go ahead and just kill Dirty Dieter with my sword!
 > DELETE FROM inhabitant WHERE name = 'Dirty Dieter'
 
-#### Dirty Diane: Heeeey! Now I'm very angry! What will you do next, Somanshu?
+#### 💬Dirty Diane: Heeeey! Now I'm very angry! What will you do next, Somanshu?
 ```sql
 DELETE FROM INHABITANT WHERE name = 'Dirty Diane';
 ```
 
-#### You: Yeah! Now I release the pilot!
+#### 💬You: Yeah! Now I release the pilot!
 ```sql
 UPDATE INHABITANT SET state = 'friendly' WHERE state = 'kidnapped';
 ```
 
-#### Pilot: Thank's for releasing me, Somanshu! I will fly you home!
-#### You: I take my sword, some gold and lots of useless items with me as a souvenir. What a big adventure!
+#### 💬Pilot: Thank's for releasing me, Somanshu! I will fly you home!
+#### 💬You: I take my sword, some gold and lots of useless items with me as a souvenir. What a big adventure!
 > UPDATE inhabitant SET state = 'emigrated' WHERE personid = 20
 
 ### The game is over. Get your certificate of completion now! If you want to change the name on the certificate, use an UPDATE command on the inhabitants table.
