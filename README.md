@@ -320,6 +320,136 @@ SELECT * FROM INHABITANT WHERE job = 'pilot';
 
 #### Edward: The expression presented here is called a join. It combines the information of the inhabitant table with information of the village table by matching villageid values.
 #### You: Thanks for the hint! I can use the join to find out the chief's name of the village Onionville. (Hint: In the column 'chief' in the village table, the personid of the chief is stored).
+```sql
+SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.chief = i.personid WHERE v.name = 'Onionville';
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Fred Dix</td></tr>
+  </tbody>
+</table>
+
+#### You: I've got it! I will visit Fred and ask him about Dirty Dieter and the pilot.
+#### You: Um, how many inhabitants does Onionville have?
+> SELECT COUNT(*) FROM inhabitant, village WHERE village.villageid = inhabitant.villageid AND village.name = 'Onionville'
+> Output:
+<table>
+  <thead>
+    <tr><th>COUNT(*)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>8</td></tr>
+  </tbody>
+</table>
+
+#### Fred Dix(Chief of Onionville): Hello Somanshu, the pilot is held captive by Dirty Dieter in his sister's house. Shall I tell you how many women there are in Onionville? Nah, you can figure it out by yourself! (Hint: Women show up as gender = 'f')
+```sql
+SELECT COUNT(*) FROM INHABITANT i INNER JOIN VILLAGE v ON v.villageid = i.villageid WHERE v.name = 'Onionville' AND gender = 'f';
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>COUNT(*)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td></tr>
+  </tbody>
+</table>
+
+#### You: Oh, only one woman. What's her name?
+```sql
+SELECT i.name FROM INHABITANT i INNER JOIN VILLAGE v ON v.villageid = i.villageid WHERE v.name = 'Onionville' AND gender = 'f';
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Dirty Diane</td></tr>
+  </tbody>
+</table>
+
+#### You: Let's go!
+#### Dirty Dieter: Somanshu, if you hand me over the entire property of our nearby village Cucumbertown, I will release the pilot. I will show you now what this property consists of.
+> SELECT SUM(inhabitant.gold) FROM inhabitant, village WHERE village.villageid = inhabitant.villageid AND village.name = 'Cucumbertown'
+> Output:
+<table>
+  <thead>
+    <tr><th>SUM(inhabitant.gold)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>8980</td></tr>
+  </tbody>
+</table>
+
+#### You: Oh no, baking bread alone can't solve my problems. If I continue working and selling items though, I could earn more gold than the worth of gold inventories of all bakers, dealers and merchants together. How much gold is that?
+```sql
+SELECT SUM(gold) FROM INHABITANT WHERE job IN ('baker', 'dealer' ,'merchant');
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>SUM(gold)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>4130</td></tr>
+  </tbody>
+</table>
+
+#### You: That's not enough.
+#### You: Let's have a look at how much average gold people own, depending on their job.
+> SELECT job, SUM(inhabitant.gold), AVG(inhabitant.gold) FROM inhabitant GROUP BY job ORDER BY AVG(inhabitant.gold)
+> Output:
+<table>
+  <thead>
+    <tr><th>job</th><th>SUM(inhabitant.gold)</th><th>AVG(inhabitant.gold)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>farmer</td><td>10</td><td>10.0</td></tr>
+    <tr><td>?</td><td>70</td><td>70.0</td></tr>
+    <tr><td>merchant</td><td>250</td><td>250.0</td></tr>
+    <tr><td>blacksmith</td><td>390</td><td>390.0</td></tr>
+    <tr><td>weaponsmith</td><td>790</td><td>395.0</td></tr>
+    <tr><td>author</td><td>420</td><td>420.0</td></tr>
+    <tr><td>pilot</td><td>490</td><td>490.0</td></tr>
+    <tr><td>baker</td><td>1750</td><td>583.333333333333</td></tr>
+    <tr><td>smith</td><td>1250</td><td>625.0</td></tr>
+    <tr><td>dealer</td><td>2130</td><td>710.0</td></tr>
+    <tr><td>butcher</td><td>11370</td><td>2842.5</td></tr>
+  </tbody>
+</table>
+
+#### You: Very interesting: For some reason, butchers own the most gold. How much gold do different inhabitants have on average, depending on their state (friendly, ...)?
+```sql
+SELECT state, AVG(gold) FROM INHABITANT GROUP BY state;
+```
+> Output:
+<table>
+  <thead>
+    <tr><th>state</th><th>AVG(gold)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>?</td><td>70.0</td></tr>
+    <tr><td>evil</td><td>1512.85714285714</td></tr>
+    <tr><td>friendly</td><td>706.363636363636</td></tr>
+    <tr><td>kidnapped</td><td>490.0</td></tr>
+  </tbody>
+</table>
+
+#### You: Ok, so the only way is to mug the villains.
+#### You: Or I might as well go ahead and just kill Dirty Dieter with my sword!
+> DELETE FROM inhabitant WHERE name = 'Dirty Dieter'
+
+#### Dirty Diane: Heeeey! Now I'm very angry! What will you do next, Somanshu?
+```sql
+
+
+
 
 
 
