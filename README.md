@@ -1,4 +1,4 @@
-This repository contains my step-by-step solutions for the [SQL Island](https://www.sql-island.com/) interactive SQL learning game.<br>
+This repository contains my step-by-step solutions for the [SQL Island](https://sql-island.informatik.uni-kl.de/) interactive SQL learning game.<br>
 
 How to read this document:
 - > The queries in this format are game system auto-generated and executed by the game.
