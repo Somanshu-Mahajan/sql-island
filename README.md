@@ -256,6 +256,13 @@ SELECT * FROM INHABITANT WHERE job IN ('dealer', 'merchant') AND state = 'friend
   </tbody>
 </table>
 
+#### Helen Grasshead(dealer): I'd like to get the ring and the teapot. The rest is nothing but scrap. Please give me the two items. My personid is 15.
+```sql
+UPDATE ITEM SET owner = 15 WHERE item IN ('ring', 'teapot');
+```
+
+
+
 
 
 
